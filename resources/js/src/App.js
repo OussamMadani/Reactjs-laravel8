@@ -7,14 +7,18 @@ import {
     Link
 } from 'react-router-dom';
 import Home from './components/Home';
+import Navbar from './Layout/Navbar';
+import Add from './components/Add';
+import Edit from './components/Edit';
 
 const App = () => {
     return (
         <Router >
+            <Navbar />
             <Switch>
-                <Route exact path="/" >
-                    <Home/>
-                </Route>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/add" component={Add}/>
+                <Route exact path="/edit" component={Edit}/>                  
             </Switch>
         </Router>
     );
