@@ -1,5 +1,11 @@
 import React from 'react';
 import AppContainer from './AppContainer';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
 
 const Home = () =>{
     return (
@@ -24,13 +30,13 @@ const Home = () =>{
                                     <td>A short descritopn</td>
                                     <td>
                                         <a href="#" className="btn btn-danger">Delete</a>
-                                        <a href="#" className="btn btn-warning">Edite</a>
+                                        <Link to="/edit" className="btn btn-warning">Edite</Link>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <a href="#" class="btn btn-primary">Add book</a>
+                    <Link to="/add" class="btn btn-primary">Add book</Link>
                 </div>
             </AppContainer>
         );
