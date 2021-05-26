@@ -9,11 +9,11 @@ import {
 const AppContainer = ({title,children}) => {
     return (
         <div className="container">
-            <div class="card text-center">
-                <div class="card-header">
+            <div className="card text-center">
+                <div className="card-header">
                     {title}
                 </div>
-                <div class="card-body">
+                <div className="card-body">
                    {children}
                 </div>
             </div>

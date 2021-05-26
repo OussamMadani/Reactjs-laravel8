@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Http\Resources\Post as PostResouce ;
-use app\Post;
+use App\Http\Resources\Post as PostResouce ;
+use App\Models\Post;
+
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource .
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return PostResouce::collection(Post::all());
+        //echo 'Hello oussama';
     }
 
     /**
@@ -36,7 +38,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $post = new Post([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+        $post->save();
+        return response()->json([
+            'data' => 'Post created'
+        ]);
     }
 
     /**
@@ -58,7 +71,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return new PostResouce(Post::findOrFail($id)); 
     }
 
     /**
@@ -70,7 +83,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->description = $request->description;
+        $post->save();
+        return response()->json([
+            'data' => 'Post updated'
+        ]);
     }
 
     /**
@@ -81,6 +104,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return response()->json([
+            'data' => 'Post deleted'
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+/*Route::get('/', function(){
+    return view('welcome');
+});*/
 
-Route::resource('posts', 'PostController');
+Route::resource('posts','App\Http\Controllers\PostController');
